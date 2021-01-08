@@ -2,10 +2,10 @@ on:
   push:
     # delete this item if you don't want to trigger this workflow when modify this repo
     branches: master
-  #schedule:
+  schedule:
     # * is a special character in YAML so you have to quote this string
     # UTC 17:00 -> CST (China) 1:00, see https://datetime360.com/cn/utc-cst-china-time/
-    #- cron: '0 17 * * *'
+    - cron: '0 17 * * *'
 name: Sync github to gitee
 jobs:
   run:
