@@ -19,6 +19,7 @@ jobs:
         path: ${{ github.workspace }}/hub-mirror-cache
         key: ${{ runner.os }}-${{ steps.info.outputs.key }}-cache-${{ steps.info.outputs.time }}
         restore-keys: ${{ runner.os }}-${{ steps.info.outputs.key }}-cache-
+
     - name: Sync-GitHub-to-Gitee 
       uses: Yikun/hub-mirror-action@master
       with:
@@ -28,7 +29,7 @@ jobs:
         dst_token: ${{ secrets.GITEE_TOKEN }}
         force_update: true
         #account_type: user
-        cache_path: /github/workspace/hub-mirror-cache
+        cache_path: ${{ github.workspace }}/hub-mirror-cache
         timeout: 600
         static_list: "Calendar, RabbitCommon, RabbitIm, ChineseChessControl, LunarCalendar, SerialPortAssistant, TransformCoordinate"
       
