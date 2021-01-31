@@ -31,7 +31,7 @@ jobs:
         #account_type: user
         cache_path: ${{ github.workspace }}/hub-mirror-cache
         timeout: 600
-        static_list: "Calendar, RabbitCommon, RabbitIm, ChineseChessControl, LunarCalendar, SerialPortAssistant, TransformCoordinate, windows_right_menu"
+        static_list: "RabbitRemoteControl, Calendar, RabbitCommon, RabbitIm, ChineseChessControl, LunarCalendar, SerialPortAssistant, TransformCoordinate, windows_right_menu"
       
     - name: Print cache path
       run: |
