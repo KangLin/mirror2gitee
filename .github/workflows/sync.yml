@@ -5,15 +5,23 @@ on:
   schedule:
     # * is a special character in YAML so you have to quote this string
     # UTC 17:00 -> CST (China) 1:00, see https://datetime360.com/cn/utc-cst-china-time/
-    - cron: '0 1 * * *'
+    - cron: '0 20 * * *'
 name: Sync github to gitee
 jobs:
   run:
     name: Sync-GitHub-to-Gitee
     runs-on: ubuntu-latest
     steps:
+    - name: Cache src repos
+      uses: actions/cache@v2.1.3
+      id: cache
+      with:
+        path: ${{ github.workspace }}/hub-mirror-cache
+        key: ${{ runner.os }}-${{ steps.info.outputs.key }}-cache-${{ steps.info.outputs.time }}
+        restore-keys: ${{ runner.os }}-${{ steps.info.outputs.key }}-cache-
+
     - name: Sync-GitHub-to-Gitee 
-      uses: Yikun/hub-mirror-action@master
+      uses: Yikun/hub-mirror-action@v1.1
       with:
         src: github/KangLin
         dst: gitee/kl222
@@ -21,6 +29,18 @@ jobs:
         dst_token: ${{ secrets.GITEE_TOKEN }}
         force_update: true
         #account_type: user
-        #cache_path:
+        cache_path: ${{ github.workspace }}/hub-mirror-cache
         timeout: 600
-        static_list: "Calendar, RabbitCommon, RabbitIm, ChineseChessControl, LunarCalendar, SerialPortAssistant, TransformCoordinate"
+        static_list: "RabbitCommon,RabbitIm,ChineseChessControl,LunarCalendar,Calendar,SerialPortAssistant,TransformCoordinate,windows_right_menu,RabbitRemoteControl,RabbitProxyServer,Documents,FaceRecognizer,QtAndroidUtils,ProfitCalculation,AndroidLockScreen,RabbitGIS,RabbitVNC,GoogleMapPluginForQt,WanNiLi.Gadget"
+      
+    - name: Print cache path
+      run: |
+          ls -la ${{ github.workspace }}/hub-mirror-cache
+
+    - name: mirror
+        uses: KangLin/mirror-action@group
+        with:
+          GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
+          GIT_SSH_NO_VERIFY_HOST: "true"
+
+          

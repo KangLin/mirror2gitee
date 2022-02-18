@@ -1,0 +1,23 @@
+name: mirror sourceforge
+on: push
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: mirror 
+        run: |
+          export GIT_SSH_PRIVATE_KEY=${{ secrets.GIT_SSH_PRIVATE_KEY }}
+          export GIT_SSH_NO_VERIFY_HOST="true"
+          export GIT_PUSH_ARGS="--force"
+          var=(serialportassistant rabbitremotecontrol)
+          for repository in ${var[@]}; do
+              mkdir ${{github.workspace}}/${repository}
+              cd ${{github.workspace}}/${repository}
+              export SRC_REPO="https://github.com/${repository}.git"
+              export REMOTE="ssh://kl222@git.code.sf.net/p/${repository}/code"
+              /bin/bash ${{github.workspace}}/entrypoint.sh
+          done
+          
