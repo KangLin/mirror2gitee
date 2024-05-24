@@ -21,7 +21,7 @@ jobs:
         restore-keys: ${{ runner.os }}-${{ steps.info.outputs.key }}-cache-
 
     - name: Sync-GitHub-to-Gitee 
-      uses: Yikun/hub-mirror-action@v1.3
+      uses: Yikun/hub-mirror-action@v1.4
       with:
         src: github/KangLin
         dst: gitee/kl222
