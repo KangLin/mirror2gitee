@@ -31,7 +31,7 @@ jobs:
         #account_type: user
         cache_path: ${{ github.workspace }}/hub-mirror-cache
         timeout: 600
-        static_list: "RabbitCommon,RabbitIm,ChineseChessControl,LunarCalendar,Calendar,SerialPortAssistant,TransformCoordinate,windows_right_menu,RabbitRemoteControl,RabbitProxyServer,Documents,FaceRecognizer,QtAndroidUtils,ProfitCalculation,AndroidLockScreen,RabbitGIS,RabbitVNC,tigervnc,GoogleMapPluginForQt,WanNiLi.Gadget"
+        static_list: "RabbitCommon,RabbitIm,ChineseChessControl,LunarCalendar,Calendar,SerialPortAssistant,TransformCoordinate,windows_right_menu,RabbitRemoteControl,RabbitProxyServer,Documents,FaceRecognizer,QtAndroidUtils,ProfitCalculation,AndroidLockScreen,RabbitGIS,RabbitVNC,tigervnc,GoogleMapPluginForQt,WanNiLi.Gadget,SerialPortService"
       
     - name: Print cache path
       run: |
